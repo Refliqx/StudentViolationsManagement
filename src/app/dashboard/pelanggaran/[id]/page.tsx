@@ -146,53 +146,49 @@ export default function PelanggaranDetailPage() {
     const exportSingleToPDF = () => {
         if (!violation) return;
         const doc = new jsPDF();
-        
-        // KOP SURAT (School Letterhead Header)
+
         doc.setFont("helvetica", "bold");
         doc.setFontSize(16);
-        doc.setTextColor(30, 41, 59); // Slate-800
+        doc.setTextColor(30, 41, 59); 
         doc.text("SMK NEGERI 1 JENANGAN", 105, 20, { align: "center" });
         doc.setFontSize(9);
         doc.setFont("helvetica", "normal");
-        doc.setTextColor(71, 85, 105); // Slate-600
+        doc.setTextColor(71, 85, 105); 
         doc.text("Jl. Jenderal Sudirman No. 1, Ponorogo, Jawa Timur", 105, 25, { align: "center" });
         doc.text("Email: info@smkn1jenangan.sch.id | Telp: (0352) 123456", 105, 30, { align: "center" });
         
-        doc.setDrawColor(29, 78, 216); // Blue-700
+        doc.setDrawColor(29, 78, 216); 
         doc.setLineWidth(0.8);
         doc.line(15, 33, 195, 33);
-        doc.setDrawColor(226, 232, 240); // Slate-200
+        doc.setDrawColor(226, 232, 240); 
         doc.setLineWidth(0.2);
         doc.line(15, 34.2, 195, 34.2);
         
         let y = 45;
-        
-        // Document Title
+
         doc.setFont("helvetica", "bold");
         doc.setFontSize(12);
-        doc.setTextColor(30, 41, 59); // Slate-800
+        doc.setTextColor(30, 41, 59); 
         doc.text("LAPORAN DETAIL PELANGGARAN KEDISIPLINAN SISWA", 105, y, { align: "center" });
         y += 6;
         
         doc.setFont("helvetica", "normal");
         doc.setFontSize(9);
-        doc.setTextColor(100, 116, 139); // Slate-500
+        doc.setTextColor(100, 116, 139); 
         doc.text(`Nomor Laporan: PEL-2026-${String(violation.id).padStart(4, '0')}`, 105, y, { align: "center" });
         y += 12;
 
-        // Section I: DATA SISWA
         doc.setFont("helvetica", "bold");
         doc.setFontSize(10);
-        doc.setTextColor(29, 78, 216); // Blue-700
+        doc.setTextColor(29, 78, 216); 
         doc.text("I. INFORMASI DATA SISWA", 15, y);
         y += 4;
         
-        doc.setDrawColor(226, 232, 240); // Slate-200
+        doc.setDrawColor(226, 232, 240); 
         doc.setLineWidth(0.3);
         doc.line(15, y, 195, y);
         y += 6;
 
-        // Key-Value rows for Data Siswa
         const siswaInfo = [
             { label: "Nama Siswa", value: violation.siswa?.nama || "-" },
             { label: "Nomor Induk Siswa (NIS)", value: violation.siswa?.nis || "-" },
@@ -203,20 +199,19 @@ export default function PelanggaranDetailPage() {
         doc.setFontSize(9.5);
         siswaInfo.forEach(item => {
             doc.setFont("helvetica", "bold");
-            doc.setTextColor(71, 85, 105); // Slate-600
+            doc.setTextColor(71, 85, 105); 
             doc.text(item.label, 20, y);
             
             doc.setFont("helvetica", "normal");
-            doc.setTextColor(30, 41, 59); // Slate-800
+            doc.setTextColor(30, 41, 59); 
             doc.text(`:   ${item.value}`, 65, y);
             y += 7;
         });
         y += 3;
 
-        // Section II: DETAIL KEJADIAN
         doc.setFont("helvetica", "bold");
         doc.setFontSize(10);
-        doc.setTextColor(29, 78, 216); // Blue-700
+        doc.setTextColor(29, 78, 216); 
         doc.text("II. DETAIL KEJADIAN PELANGGARAN", 15, y);
         y += 4;
         
@@ -224,7 +219,6 @@ export default function PelanggaranDetailPage() {
         doc.line(15, y, 195, y);
         y += 6;
 
-        // Key-Value rows for Detail Kejadian
         const kejadianInfo = [
             { label: "Jenis Pelanggaran", value: violation.jenis_pelanggaran || "-" },
             { label: "Tingkat Pelanggaran", value: violation.tingkat || "-" },
@@ -244,7 +238,6 @@ export default function PelanggaranDetailPage() {
             y += 7;
         });
 
-        // Long Description row (needs height calculation)
         doc.setFont("helvetica", "bold");
         doc.setTextColor(71, 85, 105);
         doc.text("Deskripsi Kejadian", 20, y);
@@ -259,7 +252,6 @@ export default function PelanggaranDetailPage() {
         
         y += (splitDesc.length * 5) + 4;
 
-        // Section III: TINDAKAN DAN TINDAK LANJUT
         doc.setFont("helvetica", "bold");
         doc.setFontSize(10);
         doc.setTextColor(29, 78, 216);
@@ -270,7 +262,6 @@ export default function PelanggaranDetailPage() {
         doc.line(15, y, 195, y);
         y += 6;
 
-        // Sanksi/Tindakan
         doc.setFont("helvetica", "bold");
         doc.setTextColor(71, 85, 105);
         doc.text("Sanksi / Tindakan", 20, y);
@@ -280,7 +271,6 @@ export default function PelanggaranDetailPage() {
         doc.text(`:   ${violation.tindakan || "Belum ada tindakan sanksi formal"}`, 65, y);
         y += 7;
 
-        // Tanggal Tindak Lanjut
         doc.setFont("helvetica", "bold");
         doc.setTextColor(71, 85, 105);
         doc.text("Tanggal Tindak Lanjut", 20, y);
@@ -293,7 +283,6 @@ export default function PelanggaranDetailPage() {
         doc.text(`:   ${tglTindak}`, 65, y);
         y += 7;
 
-        // Catatan Khusus
         doc.setFont("helvetica", "bold");
         doc.setTextColor(71, 85, 105);
         doc.text("Catatan Khusus", 20, y);
@@ -308,7 +297,6 @@ export default function PelanggaranDetailPage() {
         
         y += (splitNotes.length * 5) + 12;
 
-        // Signature Section
         if (y > 225) {
             doc.addPage();
             y = 30;
@@ -324,7 +312,7 @@ export default function PelanggaranDetailPage() {
         doc.text("Guru Bimbingan Konseling (BK),", 130, y);
         
         y += 28;
-        doc.setDrawColor(148, 163, 184); // Slate-400
+        doc.setDrawColor(148, 163, 184); 
         doc.setLineWidth(0.5);
         doc.line(20, y, 70, y);
         doc.line(125, y, 185, y);

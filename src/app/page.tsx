@@ -25,7 +25,7 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans">
-      {/* Premium Navbar */}
+      
       <header className="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 px-6 py-4 transition-all">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2.5">
@@ -69,7 +69,6 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Hero Section */}
       <section className="flex-1 max-w-7xl mx-auto px-6 py-16 md:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-7 space-y-8 text-left">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-50 rounded-full text-blue-600 text-xs font-semibold tracking-wide">
@@ -117,7 +116,6 @@ export default function HomePage() {
             )}
           </div>
 
-          {/* Quick Metrics */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-6 border-t border-slate-200/80 max-w-2xl text-center sm:text-left">
             <div>
               <span className="text-2xl md:text-3xl font-black text-slate-800 block">100%</span>
@@ -134,7 +132,6 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Dynamic Graphic Mockup */}
         <div className="lg:col-span-5 relative">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 to-indigo-600/20 blur-3xl rounded-full" />
           <div className="relative bg-white border border-slate-100 rounded-3xl p-6 shadow-2xl space-y-6">
@@ -186,7 +183,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Core Features Section */}
       <section className="bg-white border-t border-slate-100 py-16 md:py-20 px-6">
         <div className="max-w-7xl mx-auto space-y-12">
           <div className="text-center space-y-4 max-w-xl mx-auto">
@@ -240,7 +236,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="bg-slate-900 text-white py-12 px-6 border-t border-slate-800">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">

@@ -5,7 +5,6 @@ const rawUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
 const supabaseUrl = rawUrl.replace(/\/rest\/v1\/?$/, '');
 const supabaseServiceKey = process.env.NEXT_PUBLIC_SECRET_ROLE_KEY || '';
 
-// Server-side Supabase client using service_role key to bypass RLS policies
 const supabaseServer = createClient(supabaseUrl, supabaseServiceKey, {
   auth: {
     persistSession: false,
@@ -65,7 +64,6 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, message: 'Missing required fields' }, { status: 400 });
     }
 
-    // Insert to pelanggarans using all fields
     const { data: insertedViolation, error: insertError } = await supabaseServer
       .from('pelanggarans')
       .insert([{
@@ -87,7 +85,6 @@ export async function POST(request: Request) {
 
     if (insertError) throw insertError;
 
-    // If an evidence URL is provided, insert to bukti_pelanggarans
     if (url) {
       const { error: proofError } = await supabaseServer
         .from('bukti_pelanggarans')
@@ -98,7 +95,6 @@ export async function POST(request: Request) {
       if (proofError) throw proofError;
     }
 
-    // Fetch the complete populated record
     const { data: finalData, error: finalError } = await supabaseServer
       .from('pelanggarans')
       .select('*, siswas(*, kelas(*)), bukti_pelanggarans(*)')
@@ -177,7 +173,6 @@ export async function PATCH(request: Request) {
       }
     }
 
-    // Fetch the complete populated record after update
     const { data: finalData, error: finalError } = await supabaseServer
       .from('pelanggarans')
       .select('*, siswas(*, kelas(*)), bukti_pelanggarans(*)')
@@ -202,13 +197,11 @@ export async function DELETE(request: Request) {
       return NextResponse.json({ success: false, message: 'Missing violation ID' }, { status: 400 });
     }
 
-    // First delete dependent evidence photos
     await supabaseServer
       .from('bukti_pelanggarans')
       .delete()
       .eq('id_pelanggaran', id);
 
-    // Then delete the violation itself
     const { error } = await supabaseServer
       .from('pelanggarans')
       .delete()

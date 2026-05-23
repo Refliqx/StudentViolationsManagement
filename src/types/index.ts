@@ -68,7 +68,6 @@ export interface DataTopPelanggar {
   total: number;
 }
 
-
 export interface ViolationStats {
   totalViolations: number;
   monthlyViolations: any[];
@@ -89,7 +88,6 @@ export interface DataDashboard {
   pelanggaranPerTingkat: DataTingkatPelanggaran[];
   pelanggaranPerKelas: DataTopPelanggar[];
 }
-
 
 export interface Kelas {
   id: number;
@@ -120,7 +118,6 @@ export interface SiswaResponse {
   message: string;
   data: Siswa;
 }
-
 
 export interface Pelanggaran {
   id: string | number;

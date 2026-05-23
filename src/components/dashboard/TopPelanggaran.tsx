@@ -5,7 +5,6 @@ import { Card, CardHeader, CardContent, CardTitle } from "../ui/card";
 import { Badge } from "../ui/badge";
 import { Award } from "lucide-react";
 
-
 export default function TopViolatorsList({ data }: { data: any[] }) {
     return (
         <Card className="border-0 shadow-lg bg-white/80 backdrop-blur-sm">
